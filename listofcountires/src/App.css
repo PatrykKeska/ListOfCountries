@@ -12,5 +12,13 @@ html {
 
 body {
   margin: 0 auto;
-  padding: 20px;
+
+}
+
+.app--div--wrapper {
+  padding: 50px 20px;
+  display: grid;
+  grid-template-columns: 60% 50%;
+  width: 100vw;
+  height: 100vh;
 }

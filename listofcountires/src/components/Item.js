@@ -1,5 +1,6 @@
 import React from 'react';
 import "../style/Item.css"
+import PropTypes from 'prop-types';
 
 const Item = ({ name, location, population, flag }) => {
 
@@ -17,6 +18,13 @@ const Item = ({ name, location, population, flag }) => {
         </li>
     )
 
+}
+
+Item.propTypes = {
+    name: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    population: PropTypes.string.isRequired,
+    flag: PropTypes.string.isRequired,
 }
 
 
