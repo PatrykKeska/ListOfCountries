@@ -6,33 +6,16 @@ import Input from '../src/components/Input';
 const initialData = [
 
   {
-    name: "Poland",
-    location: "Europe ",
-    population: "38 mln",
-    flag: "https://cdn.britannica.com/52/3552-004-D849A1D3.jpg",
+    name: "Random Guest",
+    adult: true,
+    companion: false,
+    location: "Krakow",
+    phoneNumber: "888 222 233",
+    fbPhoto: "https://cdn0.iconfinder.com/data/icons/avatar-2/500/man-2-512.png",
+    fbLink: "https://www.google.com",
 
   },
-  {
-    name: "Austria",
-    location: "Europe ",
-    population: "9 mln",
-    flag: "https://www.flagstoreusa.com/Customer-Content/www/products/Photos/Full/austria_large.jpg",
 
-  },
-  {
-    name: "Sweden",
-    location: "Europe ",
-    population: "10 mln",
-    flag: "https://i0.wp.com/www.visionwear.com/wp-content/uploads/2011/09/sweden.gif?fit=550%2C345&ssl=1",
-
-  },
-  {
-    name: "Usa",
-    location: "North America ",
-    population: "327 mln",
-    flag: "https://www.united-states-flag.com/media/catalog/product/cache/2/image/9df78eab33525d08d6e5fb8d27136e95/f/l/flgfhis1000024675_-00_15-star-spangled-banner-3ftx5ft-printed-polyester-flag.jpg"
-
-  },
 ]
 
 
@@ -41,31 +24,85 @@ const initialData = [
 class App extends React.Component {
   state = {
     items: [...initialData],
+
+    name: ' ',
+    location: ' ',
+    adult: false,
+    companion: false,
+    phoneNumber: ' ',
+    img: ' ',
+    facebook: ' ',
+
+
+
   }
 
-  handleInput = (e) => {
-    e.preventDefault();
 
-    const newCountry = {
-      name: e.target[0].value,
-      location: e.target[1].value,
-      population: e.target[2].value + ' mln',
-      flag: e.target[3].value,
-    }
+  handleChange = (e) => {
+
+    const name = e.target.name;
+    const value = e.target.value;
 
     this.setState({
-      items: [...initialData, newCountry]
+      [name]: value
+
+    })
+
+  }
+
+  handleCheck = (e) => {
+
+    const name = e.target.name;
+    const checked = e.target.checked;
+
+    this.setState({
+      [name]: checked
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newGuest = {
+      name: this.state.name,
+      location: this.state.location,
+      adult: this.state.adult,
+      companion: this.state.companion,
+      phoneNumber: this.state.phoneNumber,
+      img: this.state.img,
+      facebook: this.state.facebook,
+    };
+
+
+
+    this.setState({
+      items: [...this.state.items, newGuest]
     })
 
     e.target.reset();
-
+    this.setState({
+      name: ' ',
+      location: ' ',
+      adult: false,
+      companion: false,
+      phoneNumber: ' ',
+      img: ' ',
+      facebook: ' ',
+    })
   }
+
 
   render() {
     return (
       <div className="app--div--wrapper">
         <ListItems initialData={this.state.items} />
-        <Input handleFnc={this.handleInput} />
+        <Input
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          handleCheck={this.handleCheck}
+          state={this.state}
+
+        />
       </div>
     );
   }

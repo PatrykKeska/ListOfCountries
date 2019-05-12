@@ -9,15 +9,18 @@ import "../style/ListItems.css"
 const ListItems = ({ initialData }) => {
     return (
         <>
-            <h1 className="ListItems--h1">List of Countries</h1>
+            <h1 className="ListItems--h1">List of guests to the invitation</h1>
             <ul className="ListItems--ul">
                 {initialData.map(item => (
                     <Item
-                        key={item.name}
+                        key={item.phoneNumber}
                         name={item.name}
                         location={item.location}
-                        population={item.population}
-                        flag={item.flag}
+                        adult={item.adult}
+                        companion={item.companion}
+                        phoneNumber={item.phoneNumber}
+                        fbPhoto={item.fbPhoto}
+                        fbLink={item.fbLink}
                     />
                 ))}
             </ul>
